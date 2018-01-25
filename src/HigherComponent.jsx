@@ -21,7 +21,11 @@ HigherComponent.propTypes = {
   component: PropTypes.func,
   render: PropTypes.func,
   onEnter: PropTypes.func,
-  routerProps: PropTypes.shape({ match: {}, history: {}, location: {} }).isRequired,
+  routerProps: PropTypes.shape({
+    match: PropTypes.object,
+    history: PropTypes.object,
+    location: PropTypes.object,
+  }).isRequired,
   onChange: PropTypes.func,
 };
 
