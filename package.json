@@ -1,0 +1,61 @@
+{
+  "name": "routehook",
+  "version": "1.0.0",
+  "description": "A simple React Component for adding onEnter and onChange Hooks to the Route Component of react-router v4",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --compilers js:babel-core/register --require ./test/setup.js ./test/*.spec.jsx"
+  },
+  "babel": {
+    "presets": [
+      "react",
+      "env",
+      "stage-0"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/guilleasz/RouteHook.git"
+  },
+  "keywords": [
+    "react",
+    "react-router",
+    "route",
+    "hooks",
+    "hook",
+    "onEnter",
+    "onChange"
+  ],
+  "author": "Guille Aszyn",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/guilleasz/RouteHook/issues"
+  },
+  "homepage": "https://github.com/guilleasz/RouteHook#readme",
+  "dependencies": {
+    "prop-types": "^15.6.0",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-router": "^4.2.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "^8.2.1",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "chai": "^4.1.2",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "eslint": "^4.16.0",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.5.1",
+    "jsdom": "^11.6.1",
+    "mocha": "^5.0.0",
+    "sinon": "^4.2.1",
+    "sinon-chai": "^2.14.0",
+    "webpack": "^3.10.0"
+  }
+}
