@@ -3,7 +3,6 @@ import { Route } from 'react-router';
 import PropTypes from 'prop-types';
 import HigherComponent from './HigherComponent';
 
-
 const RouteHook = ({
   path,
   exact,

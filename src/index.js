@@ -1,1 +1,3 @@
-export default from './RouteHook';
+import RouteHook from './RouteHook';
+
+export default RouteHook;
