@@ -18,11 +18,11 @@ export default class HigherComponent extends React.Component {
 }
 
 HigherComponent.propTypes = {
-  component: PropTypes.element,
-  render: PropTypes.element,
+  component: PropTypes.func,
+  render: PropTypes.func,
   onEnter: PropTypes.func,
   routerProps: PropTypes.shape({ match: {}, history: {}, location: {} }).isRequired,
-  onChange: PropTypes,
+  onChange: PropTypes.func,
 };
 
 HigherComponent.defaultProps = {
