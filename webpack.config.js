@@ -3,6 +3,9 @@ module.exports = {
   output: {
     path: __dirname,
     filename: './dist/index.js',
+    library: 'react-route-hook',
+    libraryTarget: 'umd',
+    umdNamedDefine: true,
   },
   context: __dirname,
   devtool: 'source-map',
