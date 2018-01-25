@@ -6,7 +6,7 @@ import chai, { expect } from 'chai';
 import sinon from 'sinon';
 import sinonChai from 'sinon-chai';
 import PropTypes from 'prop-types';
-import RouteHook from '../index';
+import RouteHook from '../src/index';
 
 chai.use(sinonChai);
 
