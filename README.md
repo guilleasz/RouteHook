@@ -16,7 +16,7 @@ This component only purpose is to keep our dummy components as statless pure fun
 ## Installation
 
 ```
-npm install --save routehook
+npm install --save react-router-routehook
 ```
 
 ## Usage
@@ -44,6 +44,8 @@ onChange is basically a wrapper around the functionality of `componentWillReceiv
 
 
 ```JSX
+import React from 'react';
+import RouteHook from 'react-router-routehook';
 
 const Data = (props) => (
   <div>
@@ -70,7 +72,7 @@ class AppContainer extends React.Component {
 
   render() {
     return (
-      <Route 
+      <RouteHook 
         path="/:id"
         onEnter={this.fetchData}
         onChange={shouldFetchData}
