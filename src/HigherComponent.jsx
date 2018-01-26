@@ -10,6 +10,10 @@ export default class HigherComponent extends React.Component {
     this.props.onChange(nextProps.routerProps, this.props.routerProps);
   }
 
+  componentWillUnmount() {
+    this.props.onLeave(this.props.routerProps);
+  }
+
   render() {
     const { component: Component, render: Render, routerProps } = this.props;
     if (Component) return <Component {...routerProps} />;
@@ -27,6 +31,7 @@ HigherComponent.propTypes = {
     location: PropTypes.object,
   }).isRequired,
   onChange: PropTypes.func,
+  onLeave: PropTypes.func,
 };
 
 HigherComponent.defaultProps = {
@@ -34,4 +39,5 @@ HigherComponent.defaultProps = {
   render: null,
   onEnter: () => {},
   onChange: () => {},
+  onLeave: () => {},  
 };

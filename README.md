@@ -1,12 +1,12 @@
 # RouteHook
 
-A  React Component that wraps the `Route` Component of React-Router v4 with `onEnter` and `onChange` hooks.
+A  React Component that wraps the `Route` Component of React-Router v4 with `onEnter`, `onChange` and `onLeave` hooks.
 
 ## Motivation
 
 Although react-router v4 is great, and declarative routing is much better than static routing, there was one lost that seemed kind of unnecessary.
 
-Needing to write dummy components as classes only to make use of their lyfecyle hooks as, `componentDidMount` when the pathname matches and the component is mounted, or `componentWillReceiveProps` when the pathname changes it's a bit annoying.
+Needing to write dummy components as classes only to make use of their lyfecyle hooks as, `componentDidMount` when the pathname matches and the component is mounted,  `componentWillReceiveProps` when the pathname changes, or `componentWillUnmount` when the route don't match the route anymore, it's a bit annoying.
 
 Looking at a beautiful Stateless Functional Component, being turned into a React Class just to dispatch an action in its LifeCycle Hook... it just breaks my heart.
 
@@ -25,6 +25,7 @@ npm install --save react-route-hook
 
 - `onEnter`
 - `onChange`
+- `onLeave`
 
 > **IMPORTANT** `children` prop is not supported.
 
@@ -39,6 +40,12 @@ onEnter is basically a wrapper around the functionality of `componentDidMount`.
 `onChange` will run when the component will receive new router props, and will receive as arguments the new props and the old ones. 
 
 onChange is basically a wrapper around the functionality of `componentWillReceiveProps`.
+
+### onLeave
+
+`onLeave` will run when the component is going to be unmounted, probably beacause of the path doesn't match the route anymore.
+
+onLeave is basically a wrapper around the functionality of `componentWillUnmount`.
 
 ### Example
 
@@ -70,12 +77,17 @@ class AppContainer extends React.Component {
     }
   }
 
+  logout(props) {
+    console.log(`You are leaving the route ${props.location.pathname}`)
+  } 
+
   render() {
     return (
       <RouteHook 
-        path="/:id"
+        path="home/:id"
         onEnter={this.fetchData}
         onChange={shouldFetchData}
+        onLeave={this.logout}
         render={(routerProps) => <Data data={this.state.data} />}
       />
     )

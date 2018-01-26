@@ -23,10 +23,12 @@
     "react",
     "react-router",
     "route",
+    "routes",
     "hooks",
     "hook",
     "onEnter",
-    "onChange"
+    "onChange",
+    "onLeave"
   ],
   "author": "Guille Aszyn",
   "license": "ISC",

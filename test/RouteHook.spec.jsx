@@ -21,12 +21,17 @@ class Transition extends React.Component {
     this.props.history.push('/test/1');
   }
   render() {
-    return <RouteHook path="/test" component={Test} onChange={this.props.spy} />;
+    return <RouteHook path="/test" exact={this.props.exact} component={Test} onChange={this.props.spy} onLeave={this.props.spy} />;
   }
 }
 Transition.propTypes = {
   history: PropTypes.shape({ push: PropTypes.func }).isRequired,
   spy: PropTypes.func.isRequired,
+  exact: PropTypes.bool,
+};
+
+Transition.defaultProps = {
+  exact: false,
 };
 
 describe('RouteHook', () => {
@@ -132,5 +137,29 @@ describe('RouteHook', () => {
     expect(spy.args[0][1].history).to.exist; // eslint-disable-line no-unused-expressions
     expect(spy.args[0][1].location.pathname).to.equal('/test');
     expect(spy.args[0][0].location.pathname).to.equal('/test/1');
+  });
+  it('should run the onLeave function when the url changes and the component unmounts', () => {
+    const spy = sinon.spy();
+    const router = (
+      <MemoryRouter initialIndex={0} initialEntries={['/test']}>
+        <Route path="/" render={props => <Transition exact {...props} spy={spy} />} />
+      </MemoryRouter>
+    );
+    mount(router);
+    expect(spy).to.have.been.calledOnce; // eslint-disable-line no-unused-expressions
+  });
+  it('should run the onLeave function with the routerProps', () => {
+    const spy = sinon.spy();
+    const router = (
+      <MemoryRouter initialIndex={0} initialEntries={['/test']}>
+        <Route path="/" render={props => <Transition exact {...props} spy={spy} />} />
+      </MemoryRouter>
+    );
+    mount(router);
+    expect(spy.args[0][0].match).to.exist; // eslint-disable-line no-unused-expressions
+    expect(spy.args[0][0].location).to.exist; // eslint-disable-line no-unused-expressions
+    expect(spy.args[0][0].history).to.exist; // eslint-disable-line no-unused-expressions
+    expect(spy.args[0][0].location.pathname).to.equal('/test');
+    expect(spy.args[0]).to.have.lengthOf(1);
   });
 });
