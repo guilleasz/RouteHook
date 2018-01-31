@@ -1,6 +1,6 @@
 {
   "name": "react-route-hook",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "A simple React Component for adding onEnter and onChange Hooks to the Route Component of react-router v4",
   "main": "dist/",
   "scripts": {
