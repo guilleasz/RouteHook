@@ -7,6 +7,7 @@ import sinon from 'sinon';
 import sinonChai from 'sinon-chai';
 import PropTypes from 'prop-types';
 import RouteHook from '../src/index';
+import ArtistsContainer from './ArtistsContainer';
 
 chai.use(sinonChai);
 
@@ -161,5 +162,17 @@ describe('RouteHook', () => {
     expect(spy.args[0][0].history).to.exist; // eslint-disable-line no-unused-expressions
     expect(spy.args[0][0].location.pathname).to.equal('/test');
     expect(spy.args[0]).to.have.lengthOf(1);
+  });
+  it('should run the onEnter function when it changes for similar routes with switch', () => {
+    const artistsSpy = sinon.spy();
+    const artistSpy = sinon.spy();
+    const router = (
+      <MemoryRouter initialIndex={0} initialEntries={['/artists']}>
+        <Route path="/" render={props => <ArtistsContainer {...props} artistsSpy={artistsSpy} artistSpy={artistSpy} />} />
+      </MemoryRouter>
+    );
+    mount(router);
+    expect(artistsSpy).to.have.been.calledOnce; // eslint-disable-line no-unused-expressions
+    expect(artistSpy).to.have.been.calledOnce; // eslint-disable-line no-unused-expressions
   });
 });

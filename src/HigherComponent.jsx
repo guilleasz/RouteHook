@@ -7,7 +7,13 @@ export default class HigherComponent extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    this.props.onChange(nextProps.routerProps, this.props.routerProps);
+    const { pathname } = this.props.routerProps.location;
+    const nextPathname = nextProps.routerProps.location.pathname;
+    if (this.props.component !== nextProps.component || this.props.render !== nextProps.render) {
+      nextProps.onEnter(nextProps.routerProps);
+    } else if (pathname !== nextPathname) {
+      this.props.onChange(nextProps.routerProps, this.props.routerProps);
+    }
   }
 
   componentWillUnmount() {
@@ -39,5 +45,5 @@ HigherComponent.defaultProps = {
   render: null,
   onEnter: () => {},
   onChange: () => {},
-  onLeave: () => {},  
+  onLeave: () => {},
 };
