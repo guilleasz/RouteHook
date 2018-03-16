@@ -8,6 +8,7 @@ import sinonChai from 'sinon-chai';
 import PropTypes from 'prop-types';
 import RouteHook from '../src/index';
 import ArtistsContainer from './ArtistsContainer';
+import Search from './Search';
 
 chai.use(sinonChai);
 
@@ -174,5 +175,27 @@ describe('RouteHook', () => {
     mount(router);
     expect(artistsSpy).to.have.been.calledOnce; // eslint-disable-line no-unused-expressions
     expect(artistSpy).to.have.been.calledOnce; // eslint-disable-line no-unused-expressions
+  });
+  it('shouldn`t run onEnter when search query changes', () => {
+    const onEnter = sinon.spy();
+    const router = (
+      <MemoryRouter initialIndex={0} initialEntries={['/search']}>
+        <Route path="/" render={props => <Search {...props} onEnter={onEnter} />} />
+      </MemoryRouter>
+    );
+    mount(router);
+    expect(onEnter).to.have.been.calledOnce; // eslint-disable-line no-unused-expressions
+  });
+
+  it('should run onChange when search query changes', () => {
+    const onChange = sinon.spy();
+    const router = (
+      <MemoryRouter initialIndex={0} initialEntries={['/search']}>
+        <Route path="/" render={props => <Search {...props} onChange={onChange} />} />
+      </MemoryRouter>
+    );
+
+    mount(router);
+    expect(onChange).to.have.been.calledOnce; // eslint-disable-line no-unused-expressions
   });
 });
