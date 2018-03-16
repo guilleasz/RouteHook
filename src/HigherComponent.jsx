@@ -7,11 +7,11 @@ export default class HigherComponent extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const { pathname } = this.props.routerProps.location;
-    const nextPathname = nextProps.routerProps.location.pathname;
-    if (this.props.component !== nextProps.component || this.props.render !== nextProps.render) {
+    const { location, match } = this.props.routerProps;
+    const { location: nextLocation, match: nextMatch } = nextProps.routerProps;
+    if (match.path !== nextMatch.path) {
       nextProps.onEnter(nextProps.routerProps);
-    } else if (pathname !== nextPathname) {
+    } else if (location !== nextLocation) {
       this.props.onChange(nextProps.routerProps, this.props.routerProps);
     }
   }
